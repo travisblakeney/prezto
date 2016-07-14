@@ -10,4 +10,20 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Load the shell dotfiles
+# (~/.extra) can be used for other settings you don't want to commit.
+for file in ~/.{exports,aliases,functions,secrets}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
+
 # Customize to your needs...
+
+# Base16 shell script for configuring colors
+source ~/bin/base16-atelierlakeside.dark.sh
+
+# aws-cli completion
+source /usr/local/share/zsh/site-functions/_aws
+
+setopt clobber
+
